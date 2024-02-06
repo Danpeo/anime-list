@@ -1,39 +1,80 @@
 <dvar-container *ngIf="anime">
-  <!--<h1 class="text-5xl dv-txt-red font-bold">
-    {{ anime.title }} ({{ anime.year }})
-  </h1>
-  <p class="text-2xl mb-1 mt-2">
-    {{ anime.title_japanese }}/{{ anime.title_english }}
-  </p>
+  <div class="grid grid-cols-3 gap-16">
+    <div class="col-span-1 ms-12">
+      <img class="rounded-2xl" alt="{{anime.title}}" src="{{anime.images.jpg.large_image_url}}">
 
-  <p class="text-gray-500 mb-1">
-    {{ anime.rating }}
-  </p>
+      <dvar-card [title]="'Details'">
 
-  <dvar-border-bottom/>
+        <ul class="flex flex-col gap-4">
+          <li>
+            <p class="text-gray-400">
+              Type
+              <span class="dv-txt-green">
+            {{ anime.type }}
+          </span>
+            </p>
+          </li>
+          <li>
+            <p class="text-gray-400">
+              Episodes
+              <span class="dv-txt-green">
+            {{ anime.episodes }}
+          </span>
+            </p>
+          </li>
+          <li>
+            <p class="text-gray-400">
+              Status
+              <span class="dv-txt-green">
+              {{ anime.status }}
+              </span>
+            </p>
+          </li>
+          <li>
+            <p class="text-gray-400">
+              Duration
+              <span class="dv-txt-green">
+              {{ anime.duration }}
+              </span>
+            </p>
+          </li>
+          <li>
+            <p class="text-gray-400">
+              Broadcast
+              <span class="dv-txt-green">
+              {{ anime.broadcast.string }}
+              </span>
+            </p>
+          </li>
+          <li>
+            <p>
+              {{anime.producers}}
+            </p>
+          </li>
+        </ul>
 
-  <img alt="{{anime.title}}" src="{{anime.images.jpg.large_image_url}}">
+      </dvar-card>
 
-  <p>
-    {{ anime.url }}
-  </p>-->
-
-  <div class="grid grid-cols-3 gap-2">
-    <div class="col-span-1 ms-44">
-      <img alt="{{anime.title}}" src="{{anime.images.jpg.large_image_url}}">
     </div>
-    <div class="col-span-2 me-44">
+    <div class="col-span-2 ">
       <h1 class="text-5xl dv-txt-red font-bold">
-        {{ anime.title }} ({{ anime.year }})
+        {{ anime.title }} ({{ anime.aired.prop.from.year }} - {{ animeService.getAiringDateTo(anime) }})
       </h1>
       <p class="text-2xl mb-1 mt-2">
         {{ anime.title_japanese }}/{{ anime.title_english }}
       </p>
-      <p class="text-gray-500 mb-1">
+      <p class="text-gray-400 mb-1">
         {{ anime.rating }}
       </p>
-
       <dvar-border-bottom/>
+
+      <p [ngClass]="animeService.getColorBasedOnScore(anime)" class="text-4xl dv-txt-red font-bold inline">
+        {{ anime.score }}
+      </p>
+      <p class="italic text-gray-400 inline">
+        {{ anime.scored_by }} votes
+      </p>
+
     </div>
 
   </div>
@@ -41,3 +82,159 @@
 </dvar-container>
 
 
+<body class="bg-gray-200">
+
+<div
+  class="relative flex w-full max-w-[20rem] flex-col rounded-xl bg-gradient-to-tr from-pink-600 to-pink-400 bg-clip-border p-8 text-white shadow-md shadow-pink-500/40">
+  <div
+    class="relative m-0 mb-8 overflow-hidden rounded-none border-b border-white/10 bg-transparent bg-clip-border pb-8 text-center text-gray-700 shadow-none">
+    <p class="block font-sans text-sm font-normal uppercase leading-normal text-white antialiased">
+      standard
+    </p>
+    <h1 class="mt-6 flex justify-center gap-1 font-sans text-7xl font-normal tracking-normal text-white antialiased">
+      <span class="mt-2 text-4xl">$</span>29
+      <span class="self-end text-4xl">/mo</span>
+    </h1>
+  </div>
+  <div class="p-0">
+    <ul class="flex flex-col gap-4">
+      <li class="flex items-center gap-4">
+        <span class="rounded-full border border-white/20 bg-white/20 p-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            aria-hidden="true"
+            class="h-3 w-3"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4.5 12.75l6 6 9-13.5"
+            ></path>
+          </svg>
+        </span>
+        <p class="block font-sans text-base font-normal leading-relaxed text-inherit antialiased">
+          5 team members
+        </p>
+      </li>
+      <li class="flex items-center gap-4">
+        <span class="rounded-full border border-white/20 bg-white/20 p-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            aria-hidden="true"
+            class="h-3 w-3"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4.5 12.75l6 6 9-13.5"
+            ></path>
+          </svg>
+        </span>
+        <p class="block font-sans text-base font-normal leading-relaxed text-inherit antialiased">
+          200+ components
+        </p>
+      </li>
+      <li class="flex items-center gap-4">
+        <span class="rounded-full border border-white/20 bg-white/20 p-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            aria-hidden="true"
+            class="h-3 w-3"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4.5 12.75l6 6 9-13.5"
+            ></path>
+          </svg>
+        </span>
+        <p class="block font-sans text-base font-normal leading-relaxed text-inherit antialiased">
+          40+ built-in pages
+        </p>
+      </li>
+      <li class="flex items-center gap-4">
+        <span class="rounded-full border border-white/20 bg-white/20 p-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            aria-hidden="true"
+            class="h-3 w-3"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4.5 12.75l6 6 9-13.5"
+            ></path>
+          </svg>
+        </span>
+        <p class="block font-sans text-base font-normal leading-relaxed text-inherit antialiased">
+          1 year free updates
+        </p>
+      </li>
+      <li class="flex items-center gap-4">
+        <span class="rounded-full border border-white/20 bg-white/20 p-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            aria-hidden="true"
+            class="h-3 w-3"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4.5 12.75l6 6 9-13.5"
+            ></path>
+          </svg>
+        </span>
+        <p class="block font-sans text-base font-normal leading-relaxed text-inherit antialiased">
+          Life time technical support
+        </p>
+      </li>
+    </ul>
+  </div>
+  <div class="mt-12 p-0">
+    <button
+      class="block w-full select-none rounded-lg bg-white py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-pink-500 shadow-md shadow-blue-gray-500/10 transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-gray-500/20 focus:scale-[1.02] focus:opacity-[0.85] focus:shadow-none active:scale-100 active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+      type="button"
+      data-ripple-dark="true"
+    >
+      Buy Now
+    </button>
+  </div>
+</div>
+<div class="w-full pt-5 px-4 mb-8 mx-auto ">
+  <div class="text-sm text-gray-700 py-1">
+    Made with <a class="text-gray-700 font-semibold"
+                 href="https://www.material-tailwind.com/docs/html/card?ref=tailwindcomponents" target="_blank">Material
+    Tailwind</a> by <a href="https://www.creative-tim.com?ref=tailwindcomponents" class="text-gray-700 font-semibold"
+                       target="_blank"> Creative Tim</a>.
+  </div>
+</div>
+
+<!-- stylesheet -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css"
+/>
+
+<!-- from cdn -->
+<script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
+</body>

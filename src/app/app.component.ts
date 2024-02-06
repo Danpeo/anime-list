@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
-import {AnimeService} from "./services/anime.service";
+import {AnimeApiService} from "./services/anime-api.service";
 import {Anime, AnimeData} from "./models/anime.model";
 import {TestService} from "./services/test.service";
 
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   anime?: Anime;
 
-  constructor(private animeService: AnimeService) {
+  constructor(private animeService: AnimeApiService) {
 
   }
 

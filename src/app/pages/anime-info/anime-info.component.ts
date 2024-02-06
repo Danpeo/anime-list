@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Anime} from "../../models/anime.model";
-import {AnimeService} from "../../services/anime.service";
+import {AnimeApiService} from "../../services/anime-api.service";
 import {ActivatedRoute} from "@angular/router";
-import {NgIf} from "@angular/common";
+import {NgClass, NgIf} from "@angular/common";
 import {ContainerComponent} from "../../components/primitives/container/container.component";
 import {BorderBottomComponent} from "../../components/primitives/border-bottom/border-bottom.component";
+import {AnimeService} from "../../services/anime.service";
+import {CardComponent} from "../../components/primitives/card/card.component";
 
 @Component({
   selector: 'app-anime-info',
@@ -12,7 +14,9 @@ import {BorderBottomComponent} from "../../components/primitives/border-bottom/b
   imports: [
     NgIf,
     ContainerComponent,
-    BorderBottomComponent
+    BorderBottomComponent,
+    NgClass,
+    CardComponent
   ],
   templateUrl: './anime-info.component.html',
   styleUrl: './anime-info.component.scss'
@@ -21,7 +25,9 @@ export class AnimeInfoComponent {
   anime?: Anime;
   animeId: number = 1;
 
-  constructor(private readonly animeService: AnimeService, private readonly route: ActivatedRoute) {
+  constructor(private readonly animeApiService: AnimeApiService,
+              public readonly animeService: AnimeService,
+              private readonly route: ActivatedRoute) {
 
   }
 
@@ -29,7 +35,7 @@ export class AnimeInfoComponent {
 
     this.getAnimeId();
 
-    this.animeService.getAnimeFullById(this.animeId)
+    this.animeApiService.getAnimeFullById(this.animeId)
       .subscribe({
         next: (anime) => {
           this.anime = anime;

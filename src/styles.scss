@@ -5,6 +5,11 @@
 $red-color: #ef4b46;
 $black-color: #191b1f;
 $green-color: #2bd98a;
+$blue-color: #1f56d2;
+$great-score-color: #40f551;
+$good-score-color: #70bb56;
+$avg-score-color: #d2de37;
+$bad-score-color: #f63434;
 
 .dv-txt-red {
   color: $red-color;
@@ -14,7 +19,40 @@ $green-color: #2bd98a;
   color: $green-color;
 }
 
+.dv-txt-blue {
+  color: $blue-color;
+}
+
 .dv-bg-black {
   background-color: $black-color;
 }
 
+.dv-best-score {
+  color: #10fd95;
+  text-shadow: 0 0 7px #4ae7a4, /* White glow */
+  0 0 15px #7fe5b6, /* White glow */
+  0 0 20px #87d9b2; /* White glow */
+}
+
+.glowing-text {
+  font-size: 24px; /* Adjust the font size as needed */
+  font-weight: bold; /* Adjust the font weight as needed */
+  color: #fff; /* Set the text color */
+
+}
+
+.dv-great-score {
+  color: $great-score-color;
+}
+
+.dv-good-score {
+  color: $good-score-color;
+}
+
+.dv-avg-score {
+  color: $avg-score-color;
+}
+
+.dv-bad-score {
+  color: $bad-score-color;
+}

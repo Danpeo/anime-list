@@ -8,7 +8,7 @@ import {Service} from "./service";
 @Injectable({
   providedIn: 'root'
 })
-export class AnimeService {
+export class AnimeApiService {
 
   constructor(private readonly httpClient: HttpClient) {
   }
